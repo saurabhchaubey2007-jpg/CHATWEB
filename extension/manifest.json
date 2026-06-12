@@ -1,0 +1,12 @@
+{
+	"manifest_version": 3,
+	"name": "ChatWeb",
+	"version": "1.0.0",
+	"description": "Capture the active tab URL and extract readable page content for ChatWeb.",
+	"action": {
+		"default_title": "ChatWeb",
+		"default_popup": "popup.html"
+	},
+	"permissions": ["activeTab", "tabs", "scripting", "storage"],
+	"host_permissions": ["http://127.0.0.1:8000/*"]
+}

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>ChatWeb</title>
+		<link rel="stylesheet" href="popup.css" />
+	</head>
+	<body>
+		<main class="app-shell">
+			<section class="hero">
+				<div class="hero-top-row">
+					<div class="eyebrow">ChatWeb</div>
+					<button id="toggleSettingsButton" class="icon-button settings-button" type="button" aria-label="Open Gemini API key settings">
+						⚙
+					</button>
+				</div>
+				<h1>Capture and extract page content</h1>
+				<p>Read the active tab URL, pull the readable text, and send it to your backend.</p>
+			</section>
+
+			<section id="settingsPanel" class="panel settings-panel" hidden>
+				<div class="field-group">
+					<label for="apiKeyInput">Gemini API Key</label>
+					<input id="apiKeyInput" type="password" autocomplete="off" placeholder="Enter your Gemini API key" />
+					<div id="savedKeyMask" class="meta-line" hidden></div>
+				</div>
+
+				<div class="settings-actions">
+					<button id="saveKeyButton" class="secondary-button" type="button">Save</button>
+					<button id="updateKeyButton" class="secondary-button" type="button">Update</button>
+					<button id="deleteKeyButton" class="secondary-button danger" type="button">Delete</button>
+					<button id="testKeyButton" class="primary-button" type="button">Test Key</button>
+				</div>
+
+				<div id="settingsMessage" class="status-message" role="status" aria-live="polite"></div>
+			</section>
+
+			<section class="panel">
+				<div class="field-group">
+					<label for="currentUrl">Current URL</label>
+					<div class="url-row">
+						<input id="currentUrl" type="text" readonly placeholder="Waiting for active tab..." />
+						<button id="refreshUrlButton" class="icon-button" type="button" aria-label="Refresh active tab URL">
+							↻
+						</button>
+					</div>
+				</div>
+
+				<div class="actions">
+					<button id="extractButton" class="primary-button" type="button">Extract Content</button>
+					<div id="loadingIndicator" class="loading-indicator" aria-live="polite" hidden>
+						<span class="spinner" aria-hidden="true"></span>
+						<span id="loadingLabel">Working...</span>
+					</div>
+				</div>
+
+				<div id="statusArea" class="status-area">
+					<div id="indexedBadge" class="indexed-badge" hidden>✓ Page Indexed Successfully</div>
+					<div id="pageTitle" class="meta-line" hidden></div>
+					<div id="pageUrl" class="meta-line" hidden></div>
+					<div id="charCount" class="meta-line" hidden></div>
+					<div id="statusMessage" class="status-message" role="status" aria-live="polite"></div>
+				</div>
+
+				<div id="questionArea" class="field-group" hidden>
+					<label for="questionInput">Ask about this page...</label>
+					<textarea id="questionInput" placeholder="Ask anything about this page..." spellcheck="false"></textarea>
+					<button id="askButton" class="primary-button" type="button">Ask</button>
+				</div>
+
+				<div id="answerWrapper" class="field-group" hidden>
+					<label for="answerOutput">Answer</label>
+					<textarea id="answerOutput" readonly placeholder="Answer will appear here." spellcheck="false"></textarea>
+				</div>
+			</section>
+		</main>
+
+		<script type="module" src="popup.js"></script>
+	</body>
+</html>
